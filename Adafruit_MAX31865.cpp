@@ -45,8 +45,8 @@ Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, int8_t spi_mosi,
     @param theSPI the SPI device to use, default is SPI
 */
 /**************************************************************************/
-Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI)
-    : spi_dev(spi_cs, 1000000, SPI_BITORDER_MSBFIRST, SPI_MODE1, theSPI) {}
+// Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI)
+//     : spi_dev(spi_cs, 1000000, SPI_BITORDER_MSBFIRST, SPI_MODE1, theSPI) {}
 
 /**************************************************************************/
 /*!
