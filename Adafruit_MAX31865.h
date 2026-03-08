@@ -52,6 +52,13 @@
 #include "WProgram.h"
 #endif
 
+#ifdef TARGET_TUYA
+#undef SPI_MODE0
+#undef SPI_MODE1
+#undef SPI_MODE2
+#undef SPI_MODE3
+#undef BUSIO_HAS_HW_SPI
+#endif
 #include <Adafruit_SPIDevice.h>
 
 typedef enum max31865_numwires {
@@ -72,7 +79,9 @@ class Adafruit_MAX31865 {
 public:
   Adafruit_MAX31865(int8_t spi_cs, int8_t spi_mosi, int8_t spi_miso,
                     int8_t spi_clk);
-  // Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI = &SPI);
+  #ifndef TARGET_TUYA
+  Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI = &SPI);
+  #endif
 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);
 

@@ -14,6 +14,13 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+ #ifdef TARGET_TUYA
+ #undef SPI_MODE0
+ #undef SPI_MODE1
+ #undef SPI_MODE2
+ #undef SPI_MODE3
+ #undef BUSIO_HAS_HW_SPI
+ #endif
 #include "Adafruit_MAX31865.h"
 #ifdef __AVR
 #include <avr/pgmspace.h>
@@ -45,8 +52,10 @@ Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, int8_t spi_mosi,
     @param theSPI the SPI device to use, default is SPI
 */
 /**************************************************************************/
-// Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI)
-//     : spi_dev(spi_cs, 1000000, SPI_BITORDER_MSBFIRST, SPI_MODE1, theSPI) {}
+#ifndef TARGET_TUYA
+Adafruit_MAX31865::Adafruit_MAX31865(int8_t spi_cs, SPIClass *theSPI)
+    : spi_dev(spi_cs, 1000000, SPI_BITORDER_MSBFIRST, SPI_MODE1, theSPI) {}
+#endif
 
 /**************************************************************************/
 /*!
